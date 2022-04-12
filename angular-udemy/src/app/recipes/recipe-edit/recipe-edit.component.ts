@@ -15,6 +15,10 @@ export class RecipeEditComponent implements OnInit {
   editMode = false;
   recipeForm: FormGroup;
 
+  get getIngredients(): AbstractControl[] {
+    return (<FormArray>this.recipeForm.get('ingredients')).controls;
+  }
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -96,10 +100,6 @@ export class RecipeEditComponent implements OnInit {
 
   deleteIngredient(index: number): void {
     (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
-  }
-
-  get getIngredients(): AbstractControl[] {
-    return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 
 }
